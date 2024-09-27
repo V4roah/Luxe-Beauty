@@ -32,7 +32,7 @@
             placeholder="Buscar..."
             aria-label="Search"
           />
-          <button class="btn btn-outline-success" type="submit">Buscar</button>
+          <button class="btn btn-outline-pink" type="submit">Buscar</button>
         </form>
       </div>
     </div>
@@ -40,3 +40,16 @@
 </template>
 
 <script setup></script>
+
+<style>
+.btn-outline-pink {
+  color: #ff69b4 !important;
+  border: 2px solid #ff69b4 !important;
+  background-color: transparent !important;
+}
+
+.btn-outline-pink:hover {
+  background-color: #ff69b4 !important;
+  color: white !important;
+}
+</style>

@@ -3,7 +3,7 @@
     <NavBarComponent />
   </div>
 
-  <NavigationComponent />
+  <NavigationComponent v-if="$route.path === '/about'" />
 
   <router-view />
 
