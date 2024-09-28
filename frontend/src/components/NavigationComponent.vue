@@ -8,7 +8,7 @@
         class="btn btn-pink"
         v-for="category in categories"
         :key="category.id"
-        @click="getCategoryId(category.id, category.name)"
+        @click="getCategory(category.id, category.name)"
       >
         {{ category.name }}
       </button>
@@ -17,34 +17,30 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import axios from "axios";
+import { ref, defineEmits, onMounted } from "vue";
 
-export default {
-  name: "HomeView",
-  data() {
-    return {
-      categories: [],
-      categoryId: null,
-      categoryName: null,
-    };
-  },
-  methods: {
-    getCategoryId(categoryId, categoryName) {
-      this.$emit("getCategoryId", categoryId, categoryName);
-    },
-  },
-  mounted() {
-    axios
-      .get("http://localhost:8000/api/v1.0/categories/")
-      .then((response) => {
-        this.categories = response.data;
-      })
-      .catch((error) => {
-        console.log("Error fetching categories", error);
-      });
-  },
+const categories = ref([]);
+const categoryId = ref(null);
+const categoryName = ref(null);
+
+const emit = defineEmits(["getCategoryId"]);
+
+const getCategory = (id, name) => {
+  emit("getCategoryId", id, name);
 };
+
+onMounted(() => {
+  axios
+    .get("http://localhost:8000/api/v1.0/categories/")
+    .then((response) => {
+      categories.value = response.data;
+    })
+    .catch((error) => {
+      console.log("Error fetching categories", error);
+    });
+});
 </script>
 
 <style>

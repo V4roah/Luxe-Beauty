@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <NavBarComponent />
+    <NavBarComponent v-if="$route.path !== '/'" />
   </div>
 
   <NavigationComponent v-if="$route.path === '/about'" />
